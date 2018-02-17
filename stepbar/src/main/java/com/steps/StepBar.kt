@@ -1,4 +1,4 @@
-package repadm.com.repdm.ui.component.step
+package com.steps
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
 import me.relex.circleindicator.CircleIndicator
-import steps.com.stepbar.R
+import repadm.com.repdm.ui.component.step.Step
 
 class StepBar : RelativeLayout {
     constructor(context: Context) : this(context, null)

@@ -1,4 +1,4 @@
-package steps.com.stepbar
+package com.steps
 
 
 import android.os.Bundle
@@ -13,9 +13,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
-import repadm.com.repdm.ui.component.step.StepBar
-import steps.com.stepbar.util.TestFragment
-import steps.com.stepbar.util.TestStepAdapter
+import com.steps.util.TestFragment
+import com.steps.util.TestStepAdapter
 
 @RunWith(RobolectricTestRunner::class)
 class StepBarTest {

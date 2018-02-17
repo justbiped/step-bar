@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 26
@@ -8,7 +9,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0-SNAPSHOT"
+        versionName '1.0.1-SNAPSHOT'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -46,9 +47,16 @@ dependencies {
     //Instrumentation Test
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
-
 }
-repositories {
-    mavenCentral()
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            setGroupId("com.steps")
+            setArtifactId("step-bar")
+            version android.defaultConfig.versionName
+
+            artifact(bundleRelease)
+        }
+    }
 }

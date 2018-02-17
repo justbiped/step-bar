@@ -1,4 +1,4 @@
-package steps.com.stepbar.util
+package com.steps.util
 
 
 import android.support.v4.app.Fragment
