@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
-import me.relex.circleindicator.CircleIndicator
 import repadm.com.repdm.ui.component.step.Step
 
 class StepBar : RelativeLayout {
@@ -17,7 +16,6 @@ class StepBar : RelativeLayout {
 
     private lateinit var nextStep: Button
     private lateinit var backStep: Button
-    private lateinit var pageIndicator: CircleIndicator
     private lateinit var viewPager: ViewPager
     private lateinit var onComplete: () -> Unit
 
@@ -30,7 +28,6 @@ class StepBar : RelativeLayout {
     private fun initViews(view: View) {
         nextStep = view.findViewById(R.id.nextStep)
         backStep = view.findViewById(R.id.backStep)
-        pageIndicator = view.findViewById(R.id.pageIndicator)
     }
 
     fun setViewPager(viewPager: ViewPager) {
@@ -43,7 +40,6 @@ class StepBar : RelativeLayout {
     }
 
     private fun onSetViewPager() {
-        pageIndicator.setViewPager(viewPager)
         configureStep(viewPager.currentItem)
 
         disableViewPagerScroll()

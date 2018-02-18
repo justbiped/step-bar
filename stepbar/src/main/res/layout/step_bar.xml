@@ -11,14 +11,6 @@
         android:background="@drawable/button_step_back_states"
         android:enabled="false" />
 
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/pageIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center" />
-
     <Button
         android:id="@+id/nextStep"
         android:layout_width="36dp"
