@@ -48,16 +48,16 @@ class StepBar : RelativeLayout {
     }
 
     private fun configureStep(stepPosition: Int) {
+        backStep.isEnabled = isNotFirstStep(stepPosition)
+        validateNextStepButton(stepPosition)
+
+        switchNextButtonDrawable(stepPosition)
+    }
+
+    private fun validateNextStepButton(stepPosition: Int) {
         val stepAdapter = (viewPager.adapter as FragmentPagerAdapter)
         val currentStep = (stepAdapter.getItem(stepPosition) as Step)
 
-        backStep.isEnabled = isNotFirstStep(stepPosition)
-
-        switchNextButtonDrawable(stepPosition)
-        invalidate(currentStep)
-    }
-
-    private fun invalidate(currentStep: Step) {
         currentStep.invalidateStep { nextStep.isEnabled = it }
     }
 

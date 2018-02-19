@@ -6,6 +6,7 @@ import repadm.com.repdm.ui.component.step.Step
 class SecondStepFragment : Fragment(), Step {
 
     override fun invalidateStep(invalidate: (isValid: Boolean) -> Unit) {
+        invalidate.invoke(false)
     }
 
 }
