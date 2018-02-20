@@ -1,6 +1,13 @@
+plugins {
+    id "com.github.dcendents.android-maven" version "2.0"
+}
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
+
+group = 'com.steps'
+version= '1.0.1-SNAPSHOT'
 
 android {
     buildToolsVersion '27.0.3'

@@ -1,1 +1,2 @@
 include ':stepbar', ':sampleapp'
+rootProject.name = 'step-bar'
