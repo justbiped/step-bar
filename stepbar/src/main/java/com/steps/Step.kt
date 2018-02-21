@@ -1,5 +1,9 @@
 package repadm.com.repdm.ui.component.step
 
+import android.os.Bundle
+
 interface Step {
-    fun invalidateStep(invalidate: (isValid: Boolean) -> Unit)
+    var value: Bundle
+
+    fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit)
 }

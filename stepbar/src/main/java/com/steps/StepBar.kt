@@ -17,7 +17,7 @@ class StepBar : RelativeLayout {
     private lateinit var nextStep: Button
     private lateinit var backStep: Button
     private lateinit var viewPager: ViewPager
-    private lateinit var onComplete: () -> Unit
+    private var onComplete: () -> Unit = {}
 
     init {
         val view = View.inflate(context, R.layout.step_bar, this)
@@ -58,7 +58,7 @@ class StepBar : RelativeLayout {
         val stepAdapter = (viewPager.adapter as FragmentPagerAdapter)
         val currentStep = (stepAdapter.getItem(stepPosition) as Step)
 
-        currentStep.invalidateStep { nextStep.isEnabled = it }
+        currentStep.invalidateStep { nextStep.isEnabled = it ?: false }
     }
 
     private fun switchNextButtonDrawable(stepPosition: Int) {
