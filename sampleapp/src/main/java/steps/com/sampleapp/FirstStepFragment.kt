@@ -11,8 +11,7 @@ import kotlinx.android.synthetic.main.first_step_fragment.*
 import repadm.com.repdm.ui.component.step.Step
 
 class FirstStepFragment : Fragment(), Step {
-
-    private lateinit var invalidate: (isValid: Boolean) -> Unit
+    private lateinit var invalidate: (isValid: Boolean?) -> Unit
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.first_step_fragment, container, false)
@@ -36,12 +35,20 @@ class FirstStepFragment : Fragment(), Step {
         })
     }
 
-    private fun validate() {
-        invalidate.invoke(editText != null
-                && !editText.text.isEmpty())
+    override var value: Bundle
+        get() = getValues()
+        set(value) {}
+
+    private fun getValues(): Bundle {
+        val bundle = Bundle()
+        bundle.putString("description", editText.text.toString())
+
+        return bundle
     }
 
-    override fun invalidateStep(invalidate: (isValid: Boolean) -> Unit) {
+    private fun validate() = invalidate.invoke(editText?.text?.let { !it.isEmpty() })
+
+    override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit) {
         this.invalidate = invalidate
         validate()
     }
