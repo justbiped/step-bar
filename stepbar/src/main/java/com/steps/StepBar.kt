@@ -2,13 +2,12 @@ package com.steps
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.v4.app.FragmentPagerAdapter
+import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
-import repadm.com.repdm.ui.component.step.Step
 
 class StepBar : RelativeLayout {
     constructor(context: Context) : this(context, null)
@@ -17,7 +16,7 @@ class StepBar : RelativeLayout {
     private lateinit var nextStep: Button
     private lateinit var backStep: Button
     private lateinit var viewPager: ViewPager
-    private var onComplete: () -> Unit = {}
+    private var onComplete: (Bundle) -> Unit = {}
 
     init {
         val view = View.inflate(context, R.layout.step_bar, this)
@@ -35,7 +34,7 @@ class StepBar : RelativeLayout {
         onSetViewPager()
     }
 
-    fun setOnCompleteListener(onComplete: () -> Unit) {
+    fun setOnCompleteListener(onComplete: (Bundle) -> Unit) {
         this.onComplete = onComplete
     }
 
@@ -55,8 +54,8 @@ class StepBar : RelativeLayout {
     }
 
     private fun validateNextStepButton(stepPosition: Int) {
-        val stepAdapter = (viewPager.adapter as FragmentPagerAdapter)
-        val currentStep = (stepAdapter.getItem(stepPosition) as Step)
+        val stepAdapter = (viewPager.adapter as StepAdapter)
+        val currentStep = stepAdapter.getStep(stepPosition)
 
         currentStep.invalidateStep { nextStep.isEnabled = it ?: false }
     }
@@ -75,8 +74,18 @@ class StepBar : RelativeLayout {
     }
 
     private fun toNextStep() {
-        if (isLastStep(viewPager.currentItem)) onComplete.invoke()
+        if (isLastStep(viewPager.currentItem)) onComplete.invoke(processSteps())
         else increaseStep(1)
+    }
+
+    private fun processSteps(): Bundle {
+        val stepAdapter = viewPager.adapter as StepAdapter
+        val resultBundle = Bundle()
+
+        for (i in 0 until stepAdapter.count) {
+            resultBundle.putAll(stepAdapter.getStep(i).value)
+        }
+        return resultBundle
     }
 
     private fun increaseStep(value: Int) {
