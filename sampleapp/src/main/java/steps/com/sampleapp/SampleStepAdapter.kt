@@ -1,13 +1,12 @@
 package steps.com.sampleapp
 
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import com.steps.StepAdapter
+import repadm.com.repdm.ui.component.step.Step
 
-class SampleStepAdapter constructor(private val steps: List<Fragment>, fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class SampleStepAdapter constructor(private val steps: List<Step>, fm: FragmentManager) : StepAdapter(fm) {
 
     override fun getCount(): Int = steps.size
 
-    override fun getItem(position: Int): Fragment = steps[position]
-
+    override fun getStep(position: Int): Step = steps[position]
 }
