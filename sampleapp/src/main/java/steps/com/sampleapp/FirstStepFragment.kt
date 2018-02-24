@@ -7,14 +7,14 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.first_step_fragment.*
+import kotlinx.android.synthetic.main.step_fragment.*
 import repadm.com.repdm.ui.component.step.Step
 
 class FirstStepFragment : Fragment(), Step {
     private lateinit var invalidate: (isValid: Boolean?) -> Unit
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.first_step_fragment, container, false)
+        return inflater.inflate(R.layout.step_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

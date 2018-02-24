@@ -11,6 +11,9 @@
         android:layout_above="@id/stepBar" />
 
     <com.steps.StepBar
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:id="@+id/stepBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

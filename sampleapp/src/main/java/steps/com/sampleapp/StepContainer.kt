@@ -13,10 +13,6 @@ class StepContainer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.step_container_activity)
 
-        initViews()
-    }
-
-    private fun initViews() {
         val steps = listOf<Step>(FirstStepFragment(), SecondStepFragment())
 
         viewPager.adapter = SampleStepAdapter(steps, supportFragmentManager)
