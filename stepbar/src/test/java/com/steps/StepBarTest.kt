@@ -46,7 +46,7 @@ class StepBarTest {
 
     @Test
     fun validateCurrentStepOnSetViewPager() {
-        viewPager.adapter = stepAdapter(validStep())
+        viewPager.adapter = stepAdapter(validStep("", ""))
         assertThat(nextStep).isDisabled
 
         stepBar.setViewPager(viewPager)
@@ -56,7 +56,7 @@ class StepBarTest {
 
     @Test
     fun validateCurrentStepAfterGoToNextPage() {
-        viewPager.adapter = stepAdapter(validStep(), invalidStep())
+        viewPager.adapter = stepAdapter(validStep("", ""), invalidStep())
         stepBar.setViewPager(viewPager)
         assertThat(nextStep).isEnabled
 
@@ -67,8 +67,16 @@ class StepBarTest {
     }
 
     @Test
-    fun changeDrawableOfNextStepButtonWhenAreInLastStep() {
+    fun receiveBundleWithAllStepValuesOnStepsComplete() {
+        viewPager.adapter = stepAdapter(validStep("step1", "value 1"), validStep("step2", "value 2"))
+        viewPager.currentItem = 1
 
+        nextStep.performClick()
+
+        stepBar.setOnCompleteListener {
+            assertEquals("value 1", it.getString("step1"))
+            assertEquals("value 2", it.getString("step2"))
+        }
     }
 
     private fun stepAdapter(vararg steps: TestFragment) = TestStepAdapter(steps.toList(), fragmentManager)
@@ -82,10 +90,11 @@ class StepBarTest {
         return fragment
     }
 
-    private fun validStep(): TestFragment {
+    private fun validStep(key: String, value: String): TestFragment {
         val fragment = TestFragment()
         val bundle = Bundle()
         bundle.putBoolean("isValid", true)
+        bundle.putString(key, value)
 
         fragment.arguments = bundle
         return fragment
