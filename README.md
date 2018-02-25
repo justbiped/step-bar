@@ -67,7 +67,8 @@ For example, if you want to validate the step checking if some edit text is empt
 
     override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit) {
         this.invalidate = invalidate
-		/*This is for validate when step back, it keeps the previous valid step valid*/
+
+		//This is for validate when step back, it keeps the previous valid step valid
         validate()
     }
 
