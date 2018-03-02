@@ -62,9 +62,9 @@ class StepBar : RelativeLayout {
 
     private fun switchNextButtonDrawable(stepPosition: Int) {
         if (isLastStep(stepPosition)) {
-            nextStep.background = context.getDrawable(R.drawable.button_step_done_states)
+            nextStep.background = context.getDrawable(R.drawable.ic_done_arrow)
         } else {
-            nextStep.background = context.getDrawable(R.drawable.button_step_next_states)
+            nextStep.background = context.getDrawable(R.drawable.ic_arrow_next)
         }
     }
 
