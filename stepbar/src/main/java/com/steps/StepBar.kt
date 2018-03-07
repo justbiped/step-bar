@@ -8,25 +8,37 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
+import com.steps.util.StyleableUtils
 
-class StepBar : RelativeLayout {
-    constructor(context: Context) : this(context, null)
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayout(context, attrs) {
+    private var onComplete: (Bundle) -> Unit = {}
 
     private lateinit var nextStep: Button
     private lateinit var backStep: Button
+
     private lateinit var viewPager: ViewPager
-    private var onComplete: (Bundle) -> Unit = {}
+
 
     init {
         val view = View.inflate(context, R.layout.step_bar, this)
         initViews(view)
     }
 
-    @SuppressLint("WrongViewCast")
     private fun initViews(view: View) {
         nextStep = view.findViewById(R.id.nextStep)
         backStep = view.findViewById(R.id.backStep)
+
+        setupStyleable()
+    }
+
+    private fun setupStyleable() {
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.StepBar)
+        val styleable = StyleableUtils(typedArray)
+
+        styleable.setup(R.styleable.StepBar_buttons_tint, nextStep, backStep)
+        
+
+        typedArray.recycle()
     }
 
     fun setViewPager(viewPager: ViewPager) {

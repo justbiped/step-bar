@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="StepButtons">
-        <attr name="color_buttons" format="color"/>
+    <declare-styleable name="StepBar">
+        <attr name="buttons_tint" format="color"/>
+        <attr name="back_button_tint" format="color"/>
+        <attr name="next_button_tint" format="color"/>
+        <attr name="done_button_tint" format="color"/>
+        <attr name="back_button_background" format="integer"/>
+        <attr name="next_button_background" format="integer"/>
+        <attr name="done_button_background" format="integer"/>
     </declare-styleable>
 </resources>

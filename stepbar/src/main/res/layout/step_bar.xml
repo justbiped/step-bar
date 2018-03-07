@@ -8,8 +8,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentStart="true"
-        android:background="@drawable/ic_arrow_back"
-        android:enabled="false" />
+        android:background="@drawable/ic_arrow_back" />
 
     <Button
         android:id="@+id/nextStep"
@@ -17,6 +16,5 @@
         android:layout_height="36dp"
         android:layout_alignParentEnd="true"
         android:background="@drawable/ic_arrow_next"
-        android:enabled="false"
         android:gravity="end" />
 </RelativeLayout>
