@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
-import com.steps.util.StyleableUtils
+import com.steps.util.StepStyleableManager
 
 class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayout(context, attrs) {
     private var onComplete: (Bundle) -> Unit = {}
@@ -33,10 +33,10 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
 
     private fun setupStyleable() {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.StepBar)
-        val styleable = StyleableUtils(typedArray)
+        val styleable = StepStyleableManager(typedArray)
 
         styleable.setup(R.styleable.StepBar_buttons_tint, nextStep, backStep)
-        
+
 
         typedArray.recycle()
     }
@@ -51,29 +51,29 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
     }
 
     private fun onSetViewPager() {
-        configureStep(viewPager.currentItem)
+        configureStepButtons(viewPager.currentItem)
 
         disableViewPagerScroll()
         setOnViewPagerChangeListener()
         addButtonStepsListeners()
     }
 
-    private fun configureStep(stepPosition: Int) {
+    private fun configureStepButtons(stepPosition: Int) {
         backStep.isEnabled = isNotFirstStep(stepPosition)
-        validateNextStepButton(stepPosition)
+        validateCurrentStep(stepPosition)
 
-        switchNextButtonDrawable(stepPosition)
+        switchNextButtonDrawable(isLastStep(stepPosition))
     }
 
-    private fun validateNextStepButton(stepPosition: Int) {
+    private fun validateCurrentStep(stepPosition: Int) {
         val stepAdapter = (viewPager.adapter as StepAdapter)
         val currentStep = stepAdapter.getStep(stepPosition)
 
         currentStep.invalidateStep { nextStep.isEnabled = it ?: false }
     }
 
-    private fun switchNextButtonDrawable(stepPosition: Int) {
-        if (isLastStep(stepPosition)) {
+    private fun switchNextButtonDrawable(isLastStep: Boolean) {
+        if (isLastStep) {
             nextStep.background = context.getDrawable(R.drawable.ic_done_arrow)
         } else {
             nextStep.background = context.getDrawable(R.drawable.ic_arrow_next)
@@ -90,6 +90,10 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
         else increaseStep(1)
     }
 
+    private fun increaseStep(value: Int) {
+        viewPager.setCurrentItem(viewPager.currentItem + value, true)
+    }
+
     private fun processSteps(): Bundle {
         val stepAdapter = viewPager.adapter as StepAdapter
         val resultBundle = Bundle()
@@ -98,10 +102,6 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
             resultBundle.putAll(stepAdapter.getStep(i).value)
         }
         return resultBundle
-    }
-
-    private fun increaseStep(value: Int) {
-        viewPager.setCurrentItem(viewPager.currentItem + value, true)
     }
 
     private fun isNotFirstStep(stepPosition: Int) = stepPosition != 0
@@ -114,7 +114,7 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
-                configureStep(position)
+                configureStepButtons(position)
             }
         })
     }

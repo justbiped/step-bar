@@ -5,7 +5,7 @@ import android.content.res.TypedArray
 import android.graphics.Color
 import android.view.View
 
-class StyleableUtils constructor(private var typedArray: TypedArray) {
+class StepStyleableManager constructor(private var typedArray: TypedArray) {
 
 
     fun setup(styleableId: Int, vararg views: View) {
