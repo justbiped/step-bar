@@ -2,52 +2,61 @@
 
 With this library you can have a step bar that allows you to manage multiple fragment steps in a simple way.
 
+[![](https://jitpack.io/v/roubertedgar/step-bar.svg)](https://jitpack.io/#roubertedgar/step-bar)
 
 ----------
 
 
 **Add ViewPager and StepBar on layout**
-The step bar is a viewGroup, so, you can put a close tag like \</StepBar>
+The step bar is a viewGroup, so, you can put a close tag like
+< /StepBar>
 and put some other view inside it.
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/stepBar" />
+  ```xml
+  <android.support.v4.view.ViewPager
+      android:id="@+id/viewPager"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_above="@id/stepBar" />
 
-    <com.steps.StepBar
-        android:id="@+id/stepBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
-
+  <com.steps.StepBar
+      android:id="@+id/stepBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true" />
+  ```
 
 **Implementation of view**
 Here you have to give a view pager to the step bar.  After complete all steps, the step bar will call the  onComplete of your onCompleteListener. It gives you a bundle with all values of your steps. You can see an simple implementation of it below:
 
-     override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.step_container_activity)
+  ```java
+    override fun onCreate(savedInstanceState: Bundle?) {
+          super.onCreate(savedInstanceState)
+          setContentView(R.layout.step_container_activity)
 
-            val steps = listOf<Step>(FirstStepFragment(), SecondStepFragment())
+          val steps = listOf<Step>(FirstStepFragment(), SecondStepFragment())
 
-            viewPager.adapter = SampleStepAdapter(steps, supportFragmentManager)
-            stepBar.setViewPager(viewPager)
+          viewPager.adapter = SampleStepAdapter(steps, supportFragmentManager)
+          stepBar.setViewPager(viewPager)
 
-		    //After compleet the stpes, onComplete will be called
-	        stepBar.setOnCompleteListener({
-				val intent = Intent(this, ResultActivity::class.java)
-	            intent.putExtras(bundle)
-	            startActivity(intent)
-            })
-        }
+      //After compleet the stpes, onComplete will be called
+        stepBar.setOnCompleteListener({
+    	val intent = Intent(this, ResultActivity::class.java)
+            intent.putExtras(bundle)
+            startActivity(intent)
+          })
+      }
+  ```
 **The Fragment**
     All the step fragments has to Extends support.v4.app.Fragment and implements Step:
 
-    class FirstStepFragment : Fragment(), Step {
+  ```java
+  class FirstStepFragment : Fragment(), Step {
+  ```
+
 with this, you have to provide a implementation to var:Bundle, like this:
 
+  ```java
     override var value: Bundle
     get() = getValues()
     set(value) {}
@@ -57,14 +66,19 @@ with this, you have to provide a implementation to var:Bundle, like this:
         bundle.putString("keyStepExample", "some value")
         return bundle
     }
+```
 
 And to implements invalidateStep method to, like:
 
+```java
     override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit{
         invalidate.invoke(true) //this step will be ever valid
      }
+```
+
 For example, if you want to validate the step checking if some edit text is empty or not, you could do this:
 
+```java
     override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit) {
         this.invalidate = invalidate
 
@@ -72,10 +86,14 @@ For example, if you want to validate the step checking if some edit text is empt
     }
 
     private fun validate() = invalidate.invoke(editText?.text?.let { !it.isEmpty() })
+```
 
 **StepAdapter**
 To work with step bar, your adapter has to extends the StepAdapter and implements getCount and getStep
 
+```java
     override fun getCount(): Int = steps.size
-
+```
+```java
     override fun getStep(position: Int): Step = steps[position]
+`
