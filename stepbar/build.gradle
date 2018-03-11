@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 
 group = 'com.steps'
-version= '1.0.1-SNAPSHOT'
+version = '1.0.1-SNAPSHOT'
 
 android {
     buildToolsVersion '27.0.3'
@@ -38,7 +38,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
 
     //Unit Test
     testImplementation 'junit:junit:4.12'

@@ -1,20 +1,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/page_stepper_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="5dp">
 
     <Button
         android:id="@+id/backStep"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:background="@drawable/ic_arrow_back" />
+        android:drawableLeft="@drawable/ic_arrow_back"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:ignore="RtlHardcoded" />
 
     <Button
         android:id="@+id/nextStep"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/ic_arrow_next"
-        android:gravity="end" />
+        android:drawableRight="@drawable/ic_arrow_next"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="RtlHardcoded" />
 </RelativeLayout>

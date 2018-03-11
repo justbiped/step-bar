@@ -2,6 +2,7 @@ package com.steps
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
@@ -17,7 +18,7 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
     private lateinit var backStep: Button
 
     private lateinit var viewPager: ViewPager
-
+    private lateinit var nextStepDrawable: Drawable
 
     init {
         val view = View.inflate(context, R.layout.step_bar, this)
@@ -36,7 +37,7 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
         val styleable = StepStyleableManager(typedArray)
 
         styleable.setup(R.styleable.StepBar_buttons_tint, nextStep, backStep)
-
+        nextStepDrawable = nextStep.compoundDrawables[2]
 
         typedArray.recycle()
     }
@@ -74,9 +75,11 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
 
     private fun switchNextButtonDrawable(isLastStep: Boolean) {
         if (isLastStep) {
-            nextStep.background = context.getDrawable(R.drawable.ic_done_arrow)
+            nextStep.text = context.getString(R.string.done)
+            nextStep.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
         } else {
-            nextStep.background = context.getDrawable(R.drawable.ic_arrow_next)
+            nextStep.text = ""
+            nextStep.setCompoundDrawablesWithIntrinsicBounds(null, null, nextStepDrawable, null)
         }
     }
 
