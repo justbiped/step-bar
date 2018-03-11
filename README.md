@@ -29,7 +29,7 @@ and put some other view inside it.
 **Implementation of view**
 Here you have to give a view pager to the step bar.  After complete all steps, the step bar will call the  onComplete of your onCompleteListener. It gives you a bundle with all values of your steps. You can see an simple implementation of it below:
 
-  ```java
+  ```kotlin
     override fun onCreate(savedInstanceState: Bundle?) {
           super.onCreate(savedInstanceState)
           setContentView(R.layout.step_container_activity)
@@ -56,7 +56,7 @@ Here you have to give a view pager to the step bar.  After complete all steps, t
 
 with this, you have to provide a implementation to var:Bundle, like this:
 
-  ```java
+  ```kotlin
     override var value: Bundle
     get() = getValues()
     set(value) {}
@@ -70,7 +70,7 @@ with this, you have to provide a implementation to var:Bundle, like this:
 
 And to implements invalidateStep method to, like:
 
-```java
+```kotlin
     override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit{
         invalidate.invoke(true) //this step will be ever valid
      }
@@ -78,7 +78,7 @@ And to implements invalidateStep method to, like:
 
 For example, if you want to validate the step checking if some edit text is empty or not, you could do this:
 
-```java
+```kotlin
     override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit) {
         this.invalidate = invalidate
 
@@ -91,9 +91,9 @@ For example, if you want to validate the step checking if some edit text is empt
 **StepAdapter**
 To work with step bar, your adapter has to extends the StepAdapter and implements getCount and getStep
 
-```java
+```kotlin
     override fun getCount(): Int = steps.size
 ```
-```java
+```kotlin
     override fun getStep(position: Int): Step = steps[position]
-`
+```
