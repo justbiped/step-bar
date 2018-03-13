@@ -15,19 +15,22 @@ class StepStyleableManager constructor(var typedArray: TypedArray) {
     private fun setViewBackGroundTInt(styleableId: Int, button: Button) {
         val colorStateList = typedArray.getColorStateList(styleableId)
 
-        if (colorStateList.isStateful) {
-            button.backgroundTintList = colorStateList
-            button.backgroundTintList = colorStateList
-            button.setTextColor(colorStateList)
-            button.compoundDrawables.forEach { it?.also { it.setTintList(colorStateList) } }
-        } else {
-            val states = arrayOfStates()
-            val colors = arrayOfColor(colorStateList)
-            val newColorStateList = ColorStateList(states, colors)
-            button.backgroundTintList = newColorStateList
-            button.backgroundTintList = newColorStateList
-            button.setTextColor(newColorStateList)
-            button.compoundDrawables.forEach { it?.also { it.setTintList(newColorStateList) } }
+
+        if (colorStateList != null) {
+            if (colorStateList.isStateful) {
+                button.backgroundTintList = colorStateList
+                button.backgroundTintList = colorStateList
+                button.setTextColor(colorStateList)
+                button.compoundDrawables.forEach { it?.also { it.setTintList(colorStateList) } }
+            } else {
+                val states = arrayOfStates()
+                val colors = arrayOfColor(colorStateList)
+                val newColorStateList = ColorStateList(states, colors)
+                button.backgroundTintList = newColorStateList
+                button.backgroundTintList = newColorStateList
+                button.setTextColor(newColorStateList)
+                button.compoundDrawables.forEach { it?.also { it.setTintList(newColorStateList) } }
+            }
         }
     }
 

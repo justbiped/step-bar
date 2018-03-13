@@ -30,4 +30,18 @@
         android:textSize="18sp"
         android:textStyle="bold"
         tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:id="@+id/doneStep"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:text="@string/done"
+        android:textColor="@color/default_step_itens_tint"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:ignore="RtlHardcoded" />
 </RelativeLayout>

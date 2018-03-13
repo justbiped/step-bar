@@ -16,9 +16,9 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
 
     private lateinit var nextStep: Button
     private lateinit var backStep: Button
+    private lateinit var doneStep: Button
 
     private lateinit var viewPager: ViewPager
-    private lateinit var nextStepDrawable: Drawable
 
     init {
         val view = View.inflate(context, R.layout.step_bar, this)
@@ -28,16 +28,17 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
     private fun initViews(view: View) {
         nextStep = view.findViewById(R.id.nextStep)
         backStep = view.findViewById(R.id.backStep)
+        doneStep = view.findViewById(R.id.doneStep)
 
         setupStyleable()
     }
 
     private fun setupStyleable() {
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.StepBar)
-        val styleable = StepStyleableManager(typedArray)
+        var typedArray = context.obtainStyledAttributes(attrs, R.styleable.StepBar)
+        var styleable = StepStyleableManager(typedArray)
 
-        styleable.setup(R.styleable.StepBar_buttons_tint, nextStep, backStep)
-        nextStepDrawable = nextStep.compoundDrawables[2]
+        styleable.setup(R.styleable.StepBar_buttons_tint, nextStep, backStep, doneStep)
+        styleable.setup(R.styleable.StepBar_done_text_tint, doneStep)
 
         typedArray.recycle()
     }
@@ -70,27 +71,30 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
         val stepAdapter = (viewPager.adapter as StepAdapter)
         val currentStep = stepAdapter.getStep(stepPosition)
 
-        currentStep.invalidateStep { nextStep.isEnabled = it ?: false }
+        currentStep.invalidateStep {
+            nextStep.isEnabled = it ?: false
+            doneStep.isEnabled = it ?: false
+        }
     }
 
     private fun switchNextButtonDrawable(isLastStep: Boolean) {
         if (isLastStep) {
-            nextStep.text = context.getString(R.string.done)
-            nextStep.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+            nextStep.visibility = View.INVISIBLE
+            doneStep.visibility = View.VISIBLE
         } else {
-            nextStep.text = ""
-            nextStep.setCompoundDrawablesWithIntrinsicBounds(null, null, nextStepDrawable, null)
+            nextStep.visibility = View.VISIBLE
+            doneStep.visibility = View.INVISIBLE
         }
     }
 
     private fun addButtonStepsListeners() {
-        nextStep.setOnClickListener { toNextStep() }
         backStep.setOnClickListener { increaseStep(-1) }
+        nextStep.setOnClickListener { toNextStep() }
+        doneStep.setOnClickListener { onComplete.invoke(processSteps()) }
     }
 
     private fun toNextStep() {
-        if (isLastStep(viewPager.currentItem)) onComplete.invoke(processSteps())
-        else increaseStep(1)
+        increaseStep(1)
     }
 
     private fun increaseStep(value: Int) {
