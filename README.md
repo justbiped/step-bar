@@ -97,3 +97,8 @@ To work with step bar, your adapter has to extends the StepAdapter and implement
 ```kotlin
     override fun getStep(position: Int): Step = steps[position]
 ```
+
+
+![Alt Text](https://giphy.com/gifs/Oj5vMtiCtaDtz2vKWA)
+
+
