@@ -52,5 +52,5 @@ class SecondStepFragment : Fragment(), Step {
         validate()
     }
 
-    private fun validate() = invalidate.invoke(editText?.text?.let { !it.isEmpty() })
+    private fun validate() = invalidate(editText?.text?.let { !it.isEmpty() })
 }

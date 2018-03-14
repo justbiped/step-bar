@@ -43,5 +43,6 @@
         android:textColor="@color/default_step_itens_tint"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         tools:ignore="RtlHardcoded" />
 </RelativeLayout>
