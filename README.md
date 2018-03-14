@@ -6,6 +6,7 @@ With this library you can have a step bar that allows you to manage multiple fra
 
 ----------
 
+![Alt Text](https://media.giphy.com/media/nbOPo5sSZiEmM8YjTc/giphy.gif)
 
 **Add ViewPager and StepBar on layout**
 The step bar is a viewGroup, so, you can put a close tag like
