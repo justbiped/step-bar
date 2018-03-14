@@ -8,7 +8,7 @@ With this library you can have a step bar that allows you to manage multiple fra
 
 ![Alt Text](https://media.giphy.com/media/nbOPo5sSZiEmM8YjTc/giphy.gif)
 
-#### Add ViewPager and StepBar on layout
+### Add ViewPager and StepBar on layout
 
 The step bar is a viewGroup, so, you can put a close tag like
 < /StepBar>
@@ -28,7 +28,7 @@ and put some other view inside it.
       android:layout_alignParentBottom="true" />
   ```
 
-#### Implementation of view
+### Implementation of view
 Here you have to give a view pager to the step bar.  After complete all steps, the step bar will call the  onComplete of your onCompleteListener. It gives you a bundle with all values of your steps. You can see an simple implementation of it below:
 
 ```kotlin
@@ -50,7 +50,7 @@ Here you have to give a view pager to the step bar.  After complete all steps, t
       }
   ```
 
-#### The Fragment
+### The Fragment
   All the step fragments has to Extends support.v4.app.Fragment and implements Step:
 
   ```java
@@ -91,7 +91,7 @@ For example, if you want to validate the step checking if some edit text is empt
     private fun validate() = invalidate(editText?.text?.let { !it.isEmpty() })
 ```
 
-#### StepAdapter
+### StepAdapter
 To work with step bar, your adapter has to extends the StepAdapter and implements getCount and getStep
 
 ```kotlin
@@ -101,7 +101,7 @@ To work with step bar, your adapter has to extends the StepAdapter and implement
     override fun getStep(position: Int): Step = steps[position]
 ```
 
-#### Customize
+### Customize
 For now you can customize 2 attributes of step bar.
 
 First, import custom attributes
