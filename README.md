@@ -85,7 +85,7 @@ For example, if you want to validate the step checking if some edit text is empt
         validate() //This is for validate when step back, it keeps the previous valid step valid
     }
 
-    private fun validate() = invalidate.invoke(editText?.text?.let { !it.isEmpty() })
+    private fun validate() = invalidate(editText?.text?.let { !it.isEmpty() })
 ```
 
 **StepAdapter**
@@ -97,3 +97,35 @@ To work with step bar, your adapter has to extends the StepAdapter and implement
 ```kotlin
     override fun getStep(position: Int): Step = steps[position]
 ```
+
+**Customize**
+For now you can customize 2 attributes of step bar.
+
+First, import custom attributes
+```xml
+ xmlns:step="http://schemas.android.com/apk/res-auto"
+ ```
+
+***buttons_tint***: this attribute changes the drawable color of back and next step buttons
+
+```xml
+<com.steps.StepBar
+      android:id="@+id/stepBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      step:buttons_tint="@color/colorAccent"/>
+```
+
+***done_text_tint***: Using this, you can customize the color of done button text
+```xml
+<com.steps.StepBar
+        android:id="@+id/stepBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        step:done_text_tint="@color/colorPrimary"/>
+```
+
+
+if you don't customize the button text tint, the tint of done text will be the same of back and next step buttons
