@@ -2,7 +2,7 @@
 
 With this library you can have a step bar that allows you to manage multiple fragment steps in a simple way.
 
-[![](https://jitpack.io/v/roubertedgar/step-bar.svg)](https://jitpack.io/#roubertedgar/step-bar)
+[![](https://jitpack.io/v/roubertedgar/step-bar.svg)](https://jitpack.io/#roubertedgar/step-bar)    [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Simple%20Step%20Bar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6848 )
 
 ----------
 
@@ -71,7 +71,7 @@ with this, you have to provide a implementation to var:Bundle, like this:
     }
 ```
 
-And to implements invalidateStep method to, like:
+And implements invalidateStep method to, like this:
 
 ```kotlin
     override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit{
@@ -95,10 +95,27 @@ For example, if you want to validate the step checking if some edit text is empt
 To work with step bar, your adapter has to extends the StepAdapter and implements getCount and getStep
 
 ```kotlin
-    override fun getCount(): Int = steps.size
+    override fun getCount(): Int = 3
 ```
 ```kotlin
-    override fun getStep(position: Int): Step = steps[position]
+    override fun getStep(position: Int): Step {
+        when(position){
+          0-> FirstStep()
+          1-> SecondStep()
+          2-> ThirdStep()
+        }
+    }
+```
+
+If you give a list of steps to your implementation of step adapter you can make things more simple, like:
+
+```kotlin
+    class TestAdapter constructor(val steps: List<Step>, fm: FragmentManager) : StepAdapter(fm) {
+
+        override fun getStep(position: Int): Step = steps[position]
+
+        override fun getCount(): Int = steps.size
+    }
 ```
 
 ### Customize
