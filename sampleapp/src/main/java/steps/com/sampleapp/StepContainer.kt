@@ -3,8 +3,8 @@ package steps.com.sampleapp
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.steps.Step
 import kotlinx.android.synthetic.main.step_container_activity.*
-import repadm.com.repdm.ui.component.step.Step
 
 
 class StepContainer : AppCompatActivity() {

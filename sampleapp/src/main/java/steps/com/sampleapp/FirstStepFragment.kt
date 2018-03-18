@@ -7,8 +7,8 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.steps.Step
 import kotlinx.android.synthetic.main.step_fragment.*
-import repadm.com.repdm.ui.component.step.Step
 
 class FirstStepFragment : Fragment(), Step {
     private lateinit var invalidate: (isValid: Boolean?) -> Unit
