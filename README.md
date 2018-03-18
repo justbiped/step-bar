@@ -4,6 +4,8 @@ With this library you can have a step bar that allows you to manage multiple fra
 
 [![](https://jitpack.io/v/roubertedgar/step-bar.svg)](https://jitpack.io/#roubertedgar/step-bar)
 
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Simple%20Step%20Bar-green.svg?style=flat )]( https://android-arsenal.com/details/1/6848 )
+
 ----------
 
 ![Alt Text](https://media.giphy.com/media/nbOPo5sSZiEmM8YjTc/giphy.gif)
