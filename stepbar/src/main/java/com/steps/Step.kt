@@ -1,4 +1,4 @@
-package repadm.com.repdm.ui.component.step
+package com.steps
 
 import android.os.Bundle
 

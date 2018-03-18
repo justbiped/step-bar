@@ -3,7 +3,6 @@ package com.steps
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import repadm.com.repdm.ui.component.step.Step
 
 abstract class StepAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
