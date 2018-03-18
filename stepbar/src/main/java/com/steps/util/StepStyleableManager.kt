@@ -15,7 +15,6 @@ class StepStyleableManager constructor(var typedArray: TypedArray) {
     private fun setViewBackGroundTInt(styleableId: Int, button: Button) {
         val colorStateList = typedArray.getColorStateList(styleableId)
 
-
         if (colorStateList != null) {
             if (colorStateList.isStateful) {
                 button.backgroundTintList = colorStateList

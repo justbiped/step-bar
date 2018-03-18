@@ -15,10 +15,13 @@ import org.assertj.android.api.Assertions.assertThat
 import org.robolectric.Robolectric
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
+import junit.framework.Assert.assertEquals
 
 
 @RunWith(RobolectricTestRunner::class)
 class StepBarTest {
+    private lateinit var viewPager: ViewPager
+
     private lateinit var stepBar: StepBar
 
     private lateinit var nextStep: Button
@@ -28,6 +31,7 @@ class StepBarTest {
     @Before
     fun setUp() {
         stepBar = inflateStepBar()
+        viewPager = ViewPager(RuntimeEnvironment.application.baseContext)
 
         nextStep = stepBar.findViewById(R.id.nextStep)
         backStep = stepBar.findViewById(R.id.backStep)
@@ -52,8 +56,6 @@ class StepBarTest {
 
     @Test
     fun enableNextButtonWhenStepIsValid() {
-        val viewPager = ViewPager(RuntimeEnvironment.application.baseContext)
-
         viewPager.adapter = getAdapter(step(isValid = true), step(isValid = false))
         stepBar.setViewPager(viewPager)
 
@@ -62,14 +64,32 @@ class StepBarTest {
 
     @Test
     fun turnDoneButtonVisibleOnLastStep() {
-        val viewPager = ViewPager(RuntimeEnvironment.application.baseContext)
-
         viewPager.adapter = getAdapter(step(isValid = true), step(isValid = false))
         stepBar.setViewPager(viewPager)
         nextStep.performClick()
 
         assertThat(nextStep).isInvisible
         assertThat(doneButton).isVisible
+    }
+
+    @Test
+    fun callsOnCompleteWithAllStepValuesOnPressDone() {
+        val bundle = Bundle()
+        val step1Value = "step 1 value"
+        val step2Value = "step 2 value"
+
+        viewPager.adapter = getAdapter(validStep("step1", step1Value), validStep("step2", step2Value))
+        stepBar.setViewPager(viewPager)
+
+        stepBar.setOnCompleteListener { bundle.putAll(it) }
+
+        nextStep.performClick()
+        doneButton.performClick()
+
+
+        assertEquals(step1Value, bundle.getString("step1"))
+        assertEquals(step2Value, bundle.getString("step2"))
+
     }
 
     private fun inflateStepBar(): StepBar {
@@ -89,6 +109,18 @@ class StepBarTest {
         val bundle = Bundle()
 
         bundle.putBoolean("isValid", isValid)
+
+        step.arguments = bundle
+        return step
+    }
+
+    private fun validStep(key: String, result: String): Step {
+        val step = TestStepFragment()
+        val bundle = Bundle()
+
+        bundle.putBoolean("isValid", true)
+        bundle.putString("key", key)
+        bundle.putString("result", result)
 
         step.arguments = bundle
         return step

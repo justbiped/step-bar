@@ -12,7 +12,7 @@ class TestStepFragment : Fragment(), Step {
 
     private fun getResult(): Bundle {
         val bundle = Bundle()
-        bundle.putString("stepResult", arguments?.getString("result"))
+        bundle.putString(arguments?.getString("key"), arguments?.getString("result"))
 
         return bundle
     }
