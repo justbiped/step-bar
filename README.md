@@ -75,7 +75,7 @@ And implements invalidateStep method to, like this:
 
 ```kotlin
     override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit{
-        invalidate.invoke(true) //this step will be ever valid
+        invalidae(true) //this step will be ever valid
      }
 ```
 
@@ -148,4 +148,4 @@ First, import custom attributes
 ```
 
 
-if you don't customize the button text tint, the tint of done text will be the same of back and next step buttons
+if you don't customize the button text tint, the tint of done text will be the same of back and next step butto
