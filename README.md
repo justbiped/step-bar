@@ -75,7 +75,7 @@ And implements invalidateStep method to, like this:
 
 ```kotlin
     override fun invalidateStep(invalidate: (isValid: Boolean?) -> Unit{
-        invalidae(true) //this step will be ever valid
+        invalidate(true) //this step will be ever valid
      }
 ```
 
