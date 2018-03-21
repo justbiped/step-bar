@@ -52,10 +52,12 @@ To get the results after done all steps, you can use:
       val intent = Intent(this,ResultActivity::class.java)
       intent.putExtras(it)
       startActivity(intent)
+
+  //Where 'it' is a bundle that concat all bundles of 'value' variable,
+  //returned by each step. You can se how to implement a fragment step, 
+  //and how the 'value' works in the next session
   })
 ```
-
-Where 'it' is a bundle that concat all bundles of 'value' variable, returned by each step. You can se how to implement a fragment step, and how the 'value' works in the next session
 
 
 ### The Fragment
@@ -81,8 +83,6 @@ with this, you have to provide a implementation to var value:Bundle, like this:
   //this value variable will be concat on done all steps and returned to
   //onCompleteListener that you set in stepBar.setOnCompleteListener()
 ```
-this value variable will be concat on done all steps and returned to onCompleteListener that you set in stepBar.setOnCompleteListener()
-
 
 And implements invalidateStep method to, like this:
 
