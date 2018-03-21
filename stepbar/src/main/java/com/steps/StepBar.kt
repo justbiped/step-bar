@@ -2,7 +2,6 @@ package com.steps
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
@@ -34,12 +33,12 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
     }
 
     private fun setupStyleable() {
-        var typedArray = context.obtainStyledAttributes(attrs, R.styleable.StepBar)
-        var styleable = StepStyleableManager(typedArray)
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.StepBar)
+        val styleable = StepStyleableManager(typedArray)
 
-        styleable.setup(R.styleable.StepBar_buttons_tint, nextStep, backStep, doneStep)
-        styleable.setup(R.styleable.StepBar_done_text_tint, doneStep)
-
+        styleable.applyTint(R.styleable.StepBar_buttons_tint, nextStep, backStep, doneStep)
+        styleable.applyTint(R.styleable.StepBar_done_text_tint, doneStep)
+        styleable.applyText(R.styleable.StepBar_done_button_text, doneStep)
         typedArray.recycle()
     }
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="StepBar">
-        <attr name="buttons_tint" format="color"/>
-        <attr name="done_text_tint" format="color"/>
+        <attr name="buttons_tint" format="color" />
+        <attr name="done_text_tint" format="color" />
+        <attr name="done_button_text" format="string" />
     </declare-styleable>
 </resources>

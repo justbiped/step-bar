@@ -8,7 +8,7 @@ import android.widget.Button
 class StepStyleableManager constructor(var typedArray: TypedArray) {
 
 
-    fun setup(styleableId: Int, vararg buttons: Button) {
+    fun applyTint(styleableId: Int, vararg buttons: Button) {
         buttons.forEach { setViewBackGroundTInt(styleableId, it) }
     }
 
@@ -31,6 +31,12 @@ class StepStyleableManager constructor(var typedArray: TypedArray) {
                 button.compoundDrawables.forEach { it?.also { it.setTintList(newColorStateList) } }
             }
         }
+    }
+
+    fun applyText(styleableId: Int, vararg buttons: Button) {
+        val text = typedArray.getText(styleableId)
+
+        text?.let { itText -> buttons.forEach { it.text = itText } }
     }
 
     private fun arrayOfColor(colorStateList: ColorStateList) =

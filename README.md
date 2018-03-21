@@ -40,24 +40,32 @@ Here you have to give a view pager to the step bar.  After complete all steps, t
 
           viewPager.adapter = SampleStepAdapter(steps, supportFragmentManager)
           stepBar.setViewPager(viewPager)
-
-      //After compleet the stpes, onComplete will be called
-        stepBar.setOnCompleteListener({
-    	val intent = Intent(this, ResultActivity::class.java)
-            intent.putExtras(bundle)
-            startActivity(intent)
-          })
       }
   ```
+
+### Getting results
+To get the results after done all steps, you can use:
+
+```kotlin
+  //After compleet the stpes, onComplete will be called
+  stepBar.setOnCompleteListener({
+      val intent = Intent(this,ResultActivity::class.java)
+      intent.putExtras(it)
+      startActivity(intent)
+  })
+```
+
+Where 'it' is a bundle that concat all bundles of 'value' variable, returned by each step. You can se how to implement a fragment step, and how the 'value' works in the next session
+
 
 ### The Fragment
   All the step fragments has to Extends support.v4.app.Fragment and implements Step:
 
-  ```java
+  ```kotlin
   class FirstStepFragment : Fragment(), Step {
   ```
 
-with this, you have to provide a implementation to var:Bundle, like this:
+with this, you have to provide a implementation to var value:Bundle, like this:
 
   ```kotlin
     override var value: Bundle
@@ -69,7 +77,12 @@ with this, you have to provide a implementation to var:Bundle, like this:
         bundle.putString("keyStepExample", "some value")
         return bundle
     }
+
+  //this value variable will be concat on done all steps and returned to
+  //onCompleteListener that you set in stepBar.setOnCompleteListener()
 ```
+this value variable will be concat on done all steps and returned to onCompleteListener that you set in stepBar.setOnCompleteListener()
+
 
 And implements invalidateStep method to, like this:
 
@@ -149,3 +162,15 @@ First, import custom attributes
 
 
 if you don't customize the button text tint, the tint of done text will be the same of back and next step buttons
+
+
+***done_text_tint*** : You can change the text of done button, that comes by default as "DONE"
+
+```xml
+<com.steps.StepBar
+        android:id="@+id/stepBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        step:done_button_text="Some other text" />
+```

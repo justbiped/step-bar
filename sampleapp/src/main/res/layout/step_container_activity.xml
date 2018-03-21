@@ -16,6 +16,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        step:done_text_tint="@color/colorPrimary"/>
+        step:done_button_text="Some other text" />
 
 </RelativeLayout>
