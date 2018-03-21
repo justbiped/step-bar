@@ -130,7 +130,7 @@ If you give a list of steps to your implementation of step adapter you can make 
 ```
 
 ### Customize
-For now you can customize 2 attributes of step bar.
+For now you can customize 3 attributes of step bar.
 
 First, import custom attributes
 ```xml
