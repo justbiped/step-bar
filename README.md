@@ -53,9 +53,7 @@ To get the results after done all steps, you can use:
       intent.putExtras(it)
       startActivity(intent)
 
-  //Where 'it' is a bundle that concat all bundles of 'value' variable,
-  //returned by each step. You can se how to implement a fragment step, 
-  //and how the 'value' works in the next session
+  //Where 'it' is a bundle that concat all bundles of 'value' variable, returned by each step
   })
 ```
 
