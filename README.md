@@ -161,7 +161,7 @@ First, import custom attributes
 if you don't customize the button text tint, the tint of done text will be the same of back and next step buttons
 
 
-***done_text_tint*** : You can change the text of done button, that comes by default as "DONE"
+***done_button_text*** : You can change the text of done button, that comes by default as "DONE"
 
 ```xml
 <com.steps.StepBar
