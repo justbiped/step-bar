@@ -39,6 +39,7 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
         styleable.applyTint(R.styleable.StepBar_buttons_tint, nextStep, backStep, doneStep)
         styleable.applyTint(R.styleable.StepBar_done_text_tint, doneStep)
         styleable.applyText(R.styleable.StepBar_done_button_text, doneStep)
+
         typedArray.recycle()
     }
 

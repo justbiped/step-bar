@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 
 group = 'com.steps'
-version = '1.0.1-SNAPSHOT'
+version = '1.0.2-SNAPSHOT'
 
 android {
     buildToolsVersion '27.0.3'
@@ -17,7 +17,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
-        versionName '1.0.1-SNAPSHOT'
+        versionName '1.0.2-SNAPSHOT'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
