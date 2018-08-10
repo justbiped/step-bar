@@ -171,3 +171,6 @@ if you don't customize the button text tint, the tint of done text will be the s
         android:layout_alignParentBottom="true"
         step:done_button_text="Some other text" />
 ```
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTI0NjQ3MzAzNF19
+-->
