@@ -10,7 +10,7 @@ group = 'com.steps'
 version = '1.0.2-SNAPSHOT'
 
 android {
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
     compileSdkVersion 27
 
     defaultConfig {
@@ -57,7 +57,7 @@ publishing {
             setArtifactId("step-bar")
             version android.defaultConfig.versionName
 
-            artifact(bundleRelease)
+            artifact(bundleReleaseAar)
         }
     }
 }
