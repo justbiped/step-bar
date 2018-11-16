@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sample App</string>
+    <string name="step2">Step 2</string>
+    <string name="step1">Step1</string>
 </resources>

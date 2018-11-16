@@ -1,10 +1,10 @@
 package steps.com.sampleapp
 
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import com.steps.Step
 import com.steps.StepAdapter
 
-class SampleStepAdapter constructor(private val steps: List<Step>, fm: FragmentManager) : StepAdapter(fm) {
+class SampleStepAdapter constructor(private val steps: List<Step>, fm: androidx.fragment.app.FragmentManager) : StepAdapter(fm) {
 
     override fun getCount(): Int = steps.size
 

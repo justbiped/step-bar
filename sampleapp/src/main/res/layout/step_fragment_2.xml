@@ -5,16 +5,16 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textViewStep1"
+        android:id="@+id/textViewStep2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/step1"
+        android:text="@string/step2"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/stepEditText"
+        android:id="@+id/stepEditText2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"

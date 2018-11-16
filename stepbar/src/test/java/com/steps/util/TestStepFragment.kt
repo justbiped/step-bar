@@ -1,10 +1,10 @@
 package com.steps.util
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.steps.Step
 
-class TestStepFragment : Fragment(), Step {
+class TestStepFragment : androidx.fragment.app.Fragment(), Step {
 
     override var value: Bundle
         get() = getResult()

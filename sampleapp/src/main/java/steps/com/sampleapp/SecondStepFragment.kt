@@ -1,26 +1,25 @@
 package steps.com.sampleapp
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.steps.Step
-import kotlinx.android.synthetic.main.step_fragment.*
+import kotlinx.android.synthetic.main.step_fragment_2.*
 
-class SecondStepFragment : Fragment(), Step {
+class SecondStepFragment : androidx.fragment.app.Fragment(), Step {
     private lateinit var invalidate: (isValid: Boolean?) -> Unit
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.step_fragment, container, false)
+        return inflater.inflate(R.layout.step_fragment_2, container, false)
     }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        editText.addTextChangedListener(object : TextWatcher {
+        stepEditText2.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -42,7 +41,7 @@ class SecondStepFragment : Fragment(), Step {
 
     private fun getValues(): Bundle {
         val bundle = Bundle()
-        bundle.putString("value", editText.text.toString())
+        bundle.putString("value", stepEditText2.text.toString())
 
         return bundle
     }
@@ -52,5 +51,5 @@ class SecondStepFragment : Fragment(), Step {
         validate()
     }
 
-    private fun validate() = invalidate(editText?.text?.let { !it.isEmpty() })
+    private fun validate() = invalidate(stepEditText2?.text?.let { !it.isEmpty() })
 }
