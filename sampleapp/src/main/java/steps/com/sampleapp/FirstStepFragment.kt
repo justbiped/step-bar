@@ -1,7 +1,7 @@
 package steps.com.sampleapp
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.steps.Step
 import kotlinx.android.synthetic.main.step_fragment.*
 
-class FirstStepFragment : Fragment(), Step {
+class FirstStepFragment : androidx.fragment.app.Fragment(), Step {
     private lateinit var invalidate: (isValid: Boolean?) -> Unit
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

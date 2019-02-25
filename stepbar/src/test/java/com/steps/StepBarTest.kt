@@ -1,26 +1,26 @@
 package com.steps
 
 import android.os.Bundle
-import android.support.v4.view.ViewPager
+import android.view.LayoutInflater
+import android.widget.Button
+import androidx.fragment.app.FragmentActivity
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.steps.stepbar.R
+import com.steps.util.TestAdapter
+import com.steps.util.TestStepFragment
+import junit.framework.Assert.assertEquals
+import org.assertj.android.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
-import android.view.LayoutInflater
-import android.widget.Button
-import com.steps.util.TestAdapter
-import com.steps.util.TestStepFragment
-import org.assertj.android.api.Assertions.assertThat
 import org.robolectric.Robolectric
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
-import junit.framework.Assert.assertEquals
+import org.robolectric.RuntimeEnvironment
 
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class StepBarTest {
-    private lateinit var viewPager: ViewPager
+    private lateinit var viewPager: androidx.viewpager.widget.ViewPager
 
     private lateinit var stepBar: StepBar
 
@@ -31,7 +31,7 @@ class StepBarTest {
     @Before
     fun setUp() {
         stepBar = inflateStepBar()
-        viewPager = ViewPager(RuntimeEnvironment.application.baseContext)
+        viewPager = androidx.viewpager.widget.ViewPager(RuntimeEnvironment.application.baseContext)
 
         nextStep = stepBar.findViewById(R.id.nextStep)
         backStep = stepBar.findViewById(R.id.backStep)
@@ -94,7 +94,7 @@ class StepBarTest {
 
     private fun inflateStepBar(): StepBar {
         return LayoutInflater
-                .from(RuntimeEnvironment.application)
+                .from(ApplicationProvider.getApplicationContext())
                 .inflate(R.layout.step_bar,
                         StepBar(RuntimeEnvironment.application, Robolectric.buildAttributeSet().build()),
                         true) as StepBar
@@ -126,7 +126,7 @@ class StepBarTest {
         return step
     }
 
-    private fun fragmentManager(): FragmentManager {
+    private fun fragmentManager(): androidx.fragment.app.FragmentManager {
         return Robolectric
                 .buildActivity(FragmentActivity::class.java)
                 .create()

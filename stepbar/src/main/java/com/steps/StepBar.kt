@@ -3,11 +3,11 @@ package com.steps
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
+import com.steps.stepbar.R
 import com.steps.util.StepStyleableManager
 
 class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayout(context, attrs) {
@@ -17,7 +17,7 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
     private lateinit var backStep: Button
     private lateinit var doneStep: Button
 
-    private lateinit var viewPager: ViewPager
+    private lateinit var viewPager: androidx.viewpager.widget.ViewPager
 
     init {
         val view = View.inflate(context, R.layout.step_bar, this)
@@ -43,7 +43,7 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
         typedArray.recycle()
     }
 
-    fun setViewPager(viewPager: ViewPager) {
+    fun setViewPager(viewPager: androidx.viewpager.widget.ViewPager) {
         this.viewPager = viewPager
         onSetViewPager()
     }
@@ -116,7 +116,7 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
     private fun isLastStep(stepNumber: Int) = stepNumber + 1 == viewPager.adapter?.count
 
     private fun setOnViewPagerChangeListener() {
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewPager.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
