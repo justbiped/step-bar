@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.RelativeLayout
 import com.steps.stepbar.R
 import com.steps.util.StepStyleableManager
+import com.steps.util.onPageChange
 
 class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayout(context, attrs) {
     private var onComplete: (Bundle) -> Unit = {}
@@ -116,14 +117,7 @@ class StepBar(context: Context, private var attrs: AttributeSet?) : RelativeLayo
     private fun isLastStep(stepNumber: Int) = stepNumber + 1 == viewPager.adapter?.count
 
     private fun setOnViewPagerChangeListener() {
-        viewPager.addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {}
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-
-            override fun onPageSelected(position: Int) {
-                configureStepButtons(position)
-            }
-        })
+        viewPager.onPageChange { position -> configureStepButtons(position) }
     }
 
     @SuppressLint("ClickableViewAccessibility")

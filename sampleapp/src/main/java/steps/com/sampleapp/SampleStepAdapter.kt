@@ -1,6 +1,5 @@
 package steps.com.sampleapp
 
-import androidx.fragment.app.FragmentManager
 import com.steps.Step
 import com.steps.StepAdapter
 
