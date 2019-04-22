@@ -110,22 +110,11 @@ To work with step bar, your adapter has to extends the StepAdapter and implement
 ```
 ```kotlin
     override fun getStep(position: Int): Step {
-        when(position){
+              when(position){
           0-> FirstStep()
           1-> SecondStep()
           2-> ThirdStep()
         }
-    }
-```
-
-If you give a list of steps to your implementation of step adapter you can make things more simple, like:
-
-```kotlin
-    class TestAdapter constructor(val steps: List<Step>, fm: FragmentManager) : StepAdapter(fm) {
-
-        override fun getStep(position: Int): Step = steps[position]
-
-        override fun getCount(): Int = steps.size
     }
 ```
 
