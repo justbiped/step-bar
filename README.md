@@ -106,16 +106,12 @@ For example, if you want to validate the step checking if some edit text is empt
 To work with step bar, your adapter has to extends the StepAdapter and implements getCount and getStep
 
 ```kotlin
-    override fun getCount(): Int = 3
-```
-```kotlin
-    override fun getStep(position: Int): Step {
-              when(position){
-          0-> FirstStep()
-          1-> SecondStep()
-          2-> ThirdStep()
-        }
-    }
+class SampleStepAdapter constructor(private val steps: List<Step>, fm:FragmentManager) : StepAdapter(fm) {
+
+    override fun getCount(): Int = steps.size
+
+    override fun getStep(position: Int): Step = steps[position]
+}
 ```
 
 ### Customize
